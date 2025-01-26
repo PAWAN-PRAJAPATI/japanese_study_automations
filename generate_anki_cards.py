@@ -4,9 +4,13 @@ import os
 import hashlib
 
 # Define the deck and model
-DECK_NAME = "Japanese Practice N5"
-MODEL_ID = 1234567890  # Unique ID for the model
-DECK_ID = 9876543210   # Unique ID for the deck
+# DECK_NAME = "Japanese Practice N5"
+# MODEL_ID = 1234567890  # Unique ID for the model
+# DECK_ID = 9876543210   # Unique ID for the deck
+
+DECK_NAME = "Japanese Vocab N5"
+MODEL_ID = 1234567891  # Unique ID for the model
+DECK_ID = 9876543211  # Unique ID for the deck
 
 # Anki model definition
 anki_model = genanki.Model(
@@ -94,13 +98,13 @@ with open(TSV_FILE, "r", encoding="utf-8") as tsv_file:
         note = genanki.Note(
             model=anki_model,
             fields=[english_text, english_audio_path, japanese_text, roman_text, japanese_audio_path]
-            guid=generate_guid(card_id)  # Pass fields to generate the GUID
+            # guid=generate_guid(card_id)  # Pass fields to generate the GUID
         )
         
         # Add the note to the deck
         anki_deck.add_note(note)
 
 # Save the deck to a .apkg file
-output_file = "japanese_practice_deck_n5.apkg"
+output_file = "japanese_vocab_deck_n5.apkg"
 genanki.Package(anki_deck, media_files=[os.path.join(AUDIO_FOLDER, f) for f in os.listdir(AUDIO_FOLDER)]).write_to_file(output_file)
 print(f"Anki deck has been created and saved to {output_file}")
